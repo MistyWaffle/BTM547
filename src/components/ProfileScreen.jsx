@@ -127,22 +127,7 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [], isDarkMode, setIsDarkMo
         )}
       </div>
 
-      {/* Now Playing Spotify Vinyl Widget */}
-      <div className="spotify-widget glass-panel">
-        <div className="vinyl-container">
-          <div className={`vinyl-disc ${isPlaying ? 'spin-animation' : ''}`}>
-            <div className="vinyl-center"></div>
-          </div>
-        </div>
-        <div className="track-info">
-          <span className="widget-tag text-accent font-playfair">Lounge Ambience</span>
-          <h4 className="track-title font-playfair">Midnight Jazz Grooves</h4>
-          <p className="track-artist text-sm text-muted">Playing Live in Cafe</p>
-        </div>
-        <button className="btn-play-widget" onClick={() => setIsPlaying(!isPlaying)}>
-          {isPlaying ? <Pause size={20} className="text-primary"/> : <Play size={20} className="text-primary" />}
-        </button>
-      </div>
+
 
       <div className="profile-menu">
         <h4 className="menu-title font-playfair text-primary">Preferences</h4>
