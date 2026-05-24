@@ -1,0 +1,163 @@
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 90px; /* Space for bottom nav */
+}
+
+/* Floating Bottom Navigation */
+.bottom-nav {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 70px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+  flex: 1;
+  width: 20%;
+  height: 100%;
+}
+
+.nav-item span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease;
+  position: absolute;
+  bottom: 8px;
+}
+
+.nav-item > svg,
+.nav-item > .cart-icon-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.nav-item.active {
+  color: var(--color-primary);
+}
+
+.nav-item.active > svg,
+.nav-item.active > .cart-icon-wrapper {
+  transform: translateY(-10px);
+}
+
+.nav-item.active svg {
+  color: var(--color-primary);
+}
+
+.nav-item.active span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cart-icon-wrapper {
+  position: relative;
+}
+
+.cart-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #E84545; /* Vibrant Red */
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--color-background);
+  opacity: 1 !important; /* Force visible over .nav-item span hiding */
+}
+
+.pulse-anim {
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(232, 69, 69, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(232, 69, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 69, 69, 0); }
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(15px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Hide scrollbar for clean look */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Nav Island Upgrades */
+.nav-highlight {
+  position: absolute;
+  bottom: 12px;
+  width: 45px;
+  height: 45px;
+  background: rgba(197, 160, 89, 0.15); /* Subtle brass anchor */
+  border-radius: 50%;
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+  z-index: 0;
+}
+
+/* Responsive percentage offsets for 5 tabs */
+.nav-highlight.active-home    { left: calc(10% - 22.5px); }
+.nav-highlight.active-menu    { left: calc(30% - 22.5px); }
+.nav-highlight.active-games   { left: calc(50% - 22.5px); }
+.nav-highlight.active-cart    { left: calc(70% - 22.5px); }
+.nav-highlight.active-profile { left: calc(90% - 22.5px); }
+
+.nav-item {
+  position: relative;
+  z-index: 1;
+}
+
+/* Adaptive Theming */
+.bottom-nav {
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.bottom-nav.secret-nav {
+  background-color: #0E1612;
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+.bottom-nav.secret-nav .nav-highlight {
+  background: rgba(197, 160, 89, 0.3); /* Stronger brass anchor */
+}
+
+.bottom-nav.secret-nav .nav-item {
+  color: #E2DDD5;
+}
+
+.bottom-nav.secret-nav .nav-item.active {
+  color: var(--color-accent);
+}
+
+.bottom-nav.secret-nav .nav-item.active svg {
+  color: var(--color-accent);
+}
+
