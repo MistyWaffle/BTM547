@@ -31,6 +31,9 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-pill: 9999px;
+
+  /* Surfaces */
+  --color-surface: #FFFFFF;
 }
 
 body.dark-mode {
@@ -40,6 +43,8 @@ body.dark-mode {
   --color-text-dark: #F7F4EF;
   --color-text-light: #1A362B;
   --color-text-muted: #A0A0A0;
+
+  --color-surface: #12211A; /* Dark surface */
 
   --glass-bg: rgba(10, 21, 17, 0.75);
   --glass-border: 1px solid rgba(255, 255, 255, 0.1);

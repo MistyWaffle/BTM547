@@ -1,13 +1,13 @@
 .content-area {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 90px; /* Space for bottom nav */
+  padding-bottom: max(90px, calc(90px + env(safe-area-inset-bottom))); /* Space for bottom nav */
 }
 
 /* Floating Bottom Navigation */
 .bottom-nav {
   position: absolute;
-  bottom: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom));
   left: 20px;
   right: 20px;
   height: 70px;

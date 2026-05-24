@@ -14,7 +14,7 @@ const tables = [
   { id: 9, type: 'lounge', label: 'Lounge 9' }
 ];
 
-const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout, savedAddress }) => {
+const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout, onUpdateCartQty, savedAddress }) => {
   const [orderStatus, setOrderStatus] = useState('checkout'); // 'checkout', 'received', 'brewing', 'ready'
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 mins
   const [pickupMethod, setPickupMethod] = useState('counter');
@@ -161,16 +161,28 @@ const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout, savedAddres
       {/* Order Summary */}
       <div className="order-summary glass-panel">
         <div className="cart-items">
-          {cart.map(item => (
-            <div key={item.id} className="cart-item">
+          {cart.map((item, index) => (
+            <div key={`${item.id}-${index}`} className="cart-item">
               <div className="cart-item-info">
-                <span className="qty">{item.qty}x</span>
-                <div>
+                <div className="cart-item-text">
                   <h4>{item.name}</h4>
                   <p className="text-xs text-muted">{item.details}</p>
                 </div>
               </div>
-              <span className="item-price">RM {(item.price * item.qty).toFixed(2)}</span>
+              <div className="cart-item-right">
+                <span className="item-price">RM {(item.price * item.qty).toFixed(2)}</span>
+                <div className="qty-stepper">
+                  <button 
+                    className="qty-btn" 
+                    onClick={() => onUpdateCartQty(index, item.qty - 1)}
+                  >−</button>
+                  <span className="qty-count">{item.qty}</span>
+                  <button 
+                    className="qty-btn" 
+                    onClick={() => onUpdateCartQty(index, item.qty + 1)}
+                  >+</button>
+                </div>
+              </div>
             </div>
           ))}
         </div>

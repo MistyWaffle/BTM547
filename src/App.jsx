@@ -49,6 +49,18 @@ function App() {
     setCart([]);
   };
 
+  const handleUpdateCartQty = (itemIndex, newQty) => {
+    setCart((prevCart) => {
+      if (newQty <= 0) {
+        return prevCart.filter((_, idx) => idx !== itemIndex);
+      }
+      const newCart = [...prevCart];
+      // Create a new object to ensure React detects the state change properly
+      newCart[itemIndex] = { ...newCart[itemIndex], qty: newQty };
+      return newCart;
+    });
+  };
+
   const handleBookGame = (booking) => {
     setBookedGames([...bookedGames, booking]);
   };
@@ -91,6 +103,7 @@ function App() {
             onNavigate={setActiveTab} 
             onClearCart={() => setCart([])} 
             onCheckout={handleCheckout}
+            onUpdateCartQty={handleUpdateCartQty}
             savedAddress={savedAddress}
           />
         );
