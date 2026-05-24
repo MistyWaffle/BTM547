@@ -490,6 +490,28 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive PWA Styles --- */
+@media (min-width: 768px) {
+  .hero-section {
+    border-radius: var(--radius-lg);
+    margin: 20px;
+    height: 400px;
+  }
+
+  .home-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Make loyalty card and reservations side-by-side if needed, but the auto-fill grids already handle promos nicely */
+}
+
 .track-info {
   flex: 1;
   display: flex;

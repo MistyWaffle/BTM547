@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { Home, Coffee, ShoppingBag, User, Gamepad2 } from 'lucide-react';
 import HomeScreen from './components/HomeScreen';
@@ -17,6 +17,16 @@ function App() {
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [hideChat, setHideChat] = useState(false);
   const [loyaltyPoints, setLoyaltyPoints] = useState(140);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [savedAddress, setSavedAddress] = useState('');
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
 
   const handleAddToCart = (item) => {
     setCart((prevCart) => {
@@ -81,6 +91,7 @@ function App() {
             onNavigate={setActiveTab} 
             onClearCart={() => setCart([])} 
             onCheckout={handleCheckout}
+            savedAddress={savedAddress}
           />
         );
       case 'profile':
@@ -88,6 +99,10 @@ function App() {
           <ProfileScreen 
             purchaseHistory={purchaseHistory}
             onLogout={() => setIsLoggedIn(false)} 
+            isDarkMode={isDarkMode}
+            setIsDarkMode={setIsDarkMode}
+            savedAddress={savedAddress}
+            setSavedAddress={setSavedAddress}
           />
         );
       default:

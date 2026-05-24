@@ -33,6 +33,22 @@
   --radius-pill: 9999px;
 }
 
+body.dark-mode {
+  --color-primary: #F7F4EF;
+  --color-secondary: #C5A059;
+  --color-background: #0a1511; /* Dark Forest Green */
+  --color-text-dark: #F7F4EF;
+  --color-text-light: #1A362B;
+  --color-text-muted: #A0A0A0;
+
+  --glass-bg: rgba(10, 21, 17, 0.75);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -118,4 +134,18 @@ button {
 
 .btn-primary:active {
   transform: scale(0.98);
+}
+
+/* --- Responsive PWA Styles --- */
+@media (min-width: 768px) {
+  #root {
+    background-color: var(--color-background);
+  }
+  
+  .mobile-container {
+    max-width: 100%; /* Go full width on desktop for PWA feel */
+    border-radius: 0;
+    box-shadow: none;
+    flex-direction: row; /* Sidebar layout preparation */
+  }
 }

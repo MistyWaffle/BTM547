@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Settings, ChevronRight, MapPin, CreditCard, LogOut, Play, Pause, Edit2, Check, Clock, ChevronDown, X } from 'lucide-react';
 import './ProfileScreen.css';
 
-const ProfileScreen = ({ onLogout, purchaseHistory = [] }) => {
+const ProfileScreen = ({ onLogout, purchaseHistory = [], isDarkMode, setIsDarkMode, savedAddress, setSavedAddress }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedReceipt, setSelectedReceipt] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
+  const [showAddressDrawer, setShowAddressDrawer] = useState(false);
+  const [tempAddress, setTempAddress] = useState(savedAddress);
   
   const [profile, setProfile] = useState({
     name: 'Sarah Jenkins',
@@ -144,9 +146,12 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [] }) => {
 
       <div className="profile-menu">
         <h4 className="menu-title font-playfair text-primary">Preferences</h4>
-        <button className="menu-item glass-panel">
+        <button className="menu-item glass-panel" onClick={() => { setTempAddress(savedAddress); setShowAddressDrawer(true); }}>
           <MapPin size={20} className="text-muted" />
-          <span>Saved Addresses</span>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <span>Saved Addresses</span>
+            {savedAddress && <span className="text-xs text-muted" style={{whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', maxWidth:'150px'}}>{savedAddress}</span>}
+          </div>
           <ChevronRight size={18} className="text-muted ml-auto" />
         </button>
         <button className="menu-item glass-panel">
@@ -178,6 +183,12 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [] }) => {
                 <h2 className="font-playfair">The HideOut</h2>
                 <p className="text-sm text-muted">Summer Mall, Sarawak</p>
                 <p className="text-xs text-muted">{selectedReceipt.date}</p>
+                {selectedReceipt.pickupMethod === 'delivery' && (
+                  <div className="mt-2 text-xs text-muted" style={{ borderTop: '1px dashed rgba(0,0,0,0.1)', paddingTop: '8px' }}>
+                    <strong>Delivery Address:</strong><br/>
+                    {selectedReceipt.deliveryAddress || 'N/A'}
+                  </div>
+                )}
                 <div className="receipt-divider"></div>
                 <p className="font-playfair text-lg">Order #{selectedReceipt.id}</p>
               </div>
@@ -232,9 +243,9 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [] }) => {
               <span>Push Notifications</span>
               <div className="ml-auto text-accent"><Check size={18}/></div>
             </button>
-            <button className="menu-item glass-panel">
+            <button className="menu-item glass-panel" onClick={() => setIsDarkMode(!isDarkMode)}>
               <span>Dark Mode</span>
-              <div className="ml-auto text-muted">Off</div>
+              <div className="ml-auto text-muted">{isDarkMode ? 'On' : 'Off'}</div>
             </button>
             <button className="menu-item glass-panel">
               <span>Privacy & Security</span>
@@ -247,6 +258,39 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [] }) => {
           </div>
           <div style={{textAlign: 'center', marginTop: '30px'}}>
             <p className="text-muted text-sm">App Version 1.0.4</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Address Editor Drawer */}
+      <div className={`receipt-overlay ${showAddressDrawer ? 'active' : ''}`} onClick={() => setShowAddressDrawer(false)}></div>
+      <div className={`receipt-drawer ${showAddressDrawer ? 'open' : ''}`}>
+        <div className="receipt-content">
+          <div className="receipt-header">
+            <h3 className="font-playfair text-primary">Saved Address</h3>
+            <button className="close-btn" onClick={() => setShowAddressDrawer(false)}>
+              <X size={24} className="text-muted" />
+            </button>
+          </div>
+          <div className="mt-4" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <p className="text-sm text-muted">Enter your default delivery address for faster checkout.</p>
+            <textarea
+              className="glass-panel"
+              style={{ width: '100%', height: '100px', padding: '15px', borderRadius: '12px', border: 'none', fontFamily: 'inherit', resize: 'none', color: 'var(--color-text-dark)', outline: 'none' }}
+              placeholder="e.g. 123 Forest Avenue, Apartment 4B..."
+              value={tempAddress}
+              onChange={(e) => setTempAddress(e.target.value)}
+            />
+            <button 
+              className="btn-primary" 
+              style={{ width: '100%' }}
+              onClick={() => {
+                setSavedAddress(tempAddress);
+                setShowAddressDrawer(false);
+              }}
+            >
+              Save Address
+            </button>
           </div>
         </div>
       </div>

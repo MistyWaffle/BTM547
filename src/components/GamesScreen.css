@@ -165,3 +165,26 @@
 .mb-4 { margin-bottom: 16px; }
 .mr-2 { margin-right: 8px; }
 .text-center { text-align: center; }
+
+/* --- Responsive PWA Styles --- */
+@media (min-width: 768px) {
+  .games-main {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .booking-drawer {
+    /* Transform from bottom sheet to centered modal */
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    width: 500px;
+    transform: translate(-50%, -50%) scale(0.9);
+    border-radius: var(--radius-lg);
+  }
+  
+  .booking-drawer.open {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

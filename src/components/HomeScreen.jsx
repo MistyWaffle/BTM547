@@ -16,7 +16,7 @@ const HomeScreen = ({ onNavigate, bookedGames = [], onAddToCart, loyaltyPoints =
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-bg">
-          <img src="/assets/hero.png" alt="Cafe Interior" />
+          <img src="/IMG-20260518-WA0081.jpg" alt="Cafe Interior" />
           <div className="hero-overlay"></div>
         </div>
         <div className="hero-content">

@@ -14,7 +14,7 @@ const tables = [
   { id: 9, type: 'lounge', label: 'Lounge 9' }
 ];
 
-const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout }) => {
+const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout, savedAddress }) => {
   const [orderStatus, setOrderStatus] = useState('checkout'); // 'checkout', 'received', 'brewing', 'ready'
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 mins
   const [pickupMethod, setPickupMethod] = useState('counter');
@@ -39,6 +39,14 @@ const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout }) => {
 
   const handleSlideChange = (e) => {
     const val = parseInt(e.target.value);
+    
+    // Prevent checkout if delivery but no address
+    if (val === 100 && pickupMethod === 'delivery' && !savedAddress) {
+      alert("Please save a delivery address in your Profile first.");
+      setSlideVal(0);
+      return;
+    }
+
     setSlideVal(val);
     if (val === 100) {
       handlePayment();
@@ -58,7 +66,8 @@ const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout }) => {
       items: [...cart],
       total: total.toFixed(2),
       paymentMethod: paymentMethod,
-      pickupMethod: pickupMethod
+      pickupMethod: pickupMethod,
+      deliveryAddress: pickupMethod === 'delivery' ? savedAddress : null
     };
     if (onCheckout) onCheckout(order);
     onClearCart();
@@ -200,7 +209,36 @@ const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout }) => {
             <MapPin size={18} />
             Table Delivery
           </button>
+          <button 
+            className={`toggle-btn ${pickupMethod === 'delivery' ? 'active' : ''}`}
+            onClick={() => setPickupMethod('delivery')}
+          >
+            <MapPin size={18} />
+            Delivery
+          </button>
         </div>
+
+        {/* Delivery Warning */}
+        {pickupMethod === 'delivery' && (
+          <div className="table-selector-trigger fade-in" style={{marginTop:'15px'}}>
+            <div className="btn-select-table glass-panel" style={{cursor:'default', display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
+              {savedAddress ? (
+                <>
+                  <div style={{display:'flex', alignItems:'center', gap:'8px', marginBottom:'4px'}}>
+                    <Check size={18} className="text-accent" />
+                    <strong>Deliver to:</strong>
+                  </div>
+                  <span className="text-muted text-sm">{savedAddress}</span>
+                </>
+              ) : (
+                <div style={{display:'flex', alignItems:'center', gap:'8px', color:'#E25C5C'}}>
+                  <MapPin size={18} />
+                  <span>No address saved! Please add one in your Profile.</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Table Selection Trigger */}
         {pickupMethod === 'table' && (
