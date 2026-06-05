@@ -4,32 +4,32 @@ import './MenuScreen.css';
 
 const normalItems = [
   // Noodles
-  { id: 1, name: 'Custom Noodle Bowl', desc: 'Build your own bowl! Choose your noodles, combo tier, and fresh toppings.', price: 8.00, category: 'Noodles', img: '/assets/noodles.png' },
+  { id: 1, name: 'Custom Noodle Bowl', desc: 'Build your own bowl! Choose your noodles, combo tier, and fresh toppings.', price: 8.00, category: 'Noodles', img: '/assets/Noodle_Combos.jpeg' },
   
   // Bites
-  { id: 2, name: 'Hideout Toast', desc: 'Thick, fluffy toast topped with golden-torched marshmallows with chocolate drizzle.', price: 14.50, category: 'Bites', img: '/assets/toast.png' },
-  { id: 3, name: 'Choc & Banana', desc: 'Layers of Nutella, fresh banana slices, chocolate sauce, and a side of ice cream.', price: 14.50, category: 'Bites', img: '/assets/toast.png' },
-  { id: 4, name: 'Kaya & Butter', desc: 'Classic kaya and butter toast served with soft-boiled eggs.', price: 13.90, category: 'Bites', img: '/assets/toast.png' },
-  { id: 5, name: 'HK Style French', desc: 'Crispy deep-fried toast coated in egg, finished with butter, condensed milk, and a scoop of ice cream.', price: 15.50, category: 'Bites', img: '/assets/toast.png' },
-  { id: 6, name: 'Banana Fritters', desc: 'Crispy on the outside, soft and sweet on the inside!', price: 10.00, category: 'Bites', img: '/assets/pastry.png' },
-  { id: 7, name: 'Banana Cheese Fritters', desc: 'Crispy banana fritters topped with grated cheddar cheese and a drizzle of sweet condensed milk.', price: 12.50, category: 'Bites', img: '/assets/pastry.png' },
-  { id: 8, name: 'Egg Mayo Sandwich', desc: 'Creamy egg mayo with fresh veggies, served in toasted bread — comes with fries.', price: 13.90, category: 'Bites', img: '/assets/sandwich.png' },
-  { id: 9, name: 'Tuna Mayo Sandwich', desc: 'Savory tuna mixed with mayo and herbs, layered with crisp veggies — comes with fries.', price: 15.90, category: 'Bites', img: '/assets/sandwich.png' },
-  { id: 10, name: 'Crab Mayo Sandwich', desc: 'Juicy crab sticks tossed in mayo and seasonings, paired with fresh greens — comes with fries.', price: 16.90, category: 'Bites', img: '/assets/sandwich.png' },
+  { id: 2, name: 'Hideout Toast', desc: 'Thick, fluffy toast topped with golden-torched marshmallows with chocolate drizzle.', price: 14.50, category: 'Bites', img: '/assets/Hideout_Toast.jpeg' },
+  { id: 3, name: 'Choc & Banana', desc: 'Layers of Nutella, fresh banana slices, chocolate sauce, and a side of ice cream.', price: 14.50, category: 'Bites', img: '/assets/Choc_and_Banana.jpeg' },
+  { id: 4, name: 'Kaya & Butter', desc: 'Classic kaya and butter toast served with soft-boiled eggs.', price: 13.90, category: 'Bites', img: '/assets/Kaya_and_Butter.jpeg' },
+  { id: 5, name: 'HK Style French', desc: 'Crispy deep-fried toast coated in egg, finished with butter, condensed milk, and a scoop of ice cream.', price: 15.50, category: 'Bites', img: '/assets/Hong_Kong_Style_French_Toast.jpeg' },
+  { id: 6, name: 'Banana Fritters', desc: 'Crispy on the outside, soft and sweet on the inside!', price: 10.00, category: 'Bites', img: '/assets/Banana_Fritters.jpeg' },
+  { id: 7, name: 'Banana Cheese Fritters', desc: 'Crispy banana fritters topped with grated cheddar cheese and a drizzle of sweet condensed milk.', price: 12.50, category: 'Bites', img: '/assets/Banana_Fritters.jpeg' },
+  { id: 8, name: 'Egg Mayo Sandwich', desc: 'Creamy egg mayo with fresh veggies, served in toasted bread — comes with fries.', price: 13.90, category: 'Bites', img: '/assets/Tuna_Mayo_Sandwich.jpeg' },
+  { id: 9, name: 'Tuna Mayo Sandwich', desc: 'Savory tuna mixed with mayo and herbs, layered with crisp veggies — comes with fries.', price: 15.90, category: 'Bites', img: '/assets/Tuna_Mayo_Sandwich.jpeg' },
+  { id: 10, name: 'Crab Mayo Sandwich', desc: 'Juicy crab sticks tossed in mayo and seasonings, paired with fresh greens — comes with fries.', price: 16.90, category: 'Bites', img: '/assets/Tuna_Mayo_Sandwich.jpeg' },
 
   // Platters
-  { id: 11, name: 'Custom Platter', desc: 'Choose your combo and mix standard and premium items.', price: 15.50, category: 'Platters', img: '/assets/pastry.png' },
+  { id: 11, name: 'Custom Platter', desc: 'Choose your combo and mix standard and premium items.', price: 15.50, category: 'Platters', img: '/assets/Ala_Carte.jpeg' },
 
   // Icy Bowls
-  { id: 12, name: 'ABC', desc: 'Classic shaved ice dessert.', price: 7.00, category: 'Icy Bowls', img: '/assets/latte.png' },
-  { id: 13, name: 'Cendol', desc: 'Sweet pandan jelly in coconut milk.', price: 7.00, category: 'Icy Bowls', img: '/assets/matcha.png' },
-  { id: 14, name: 'Jagung Ice', desc: 'Sweet corn shaved ice.', price: 7.00, category: 'Icy Bowls', img: '/assets/latte.png' },
-  { id: 15, name: 'Red Bean Ice', desc: 'Red bean shaved ice.', price: 7.00, category: 'Icy Bowls', img: '/assets/espresso.png' },
-  { id: 16, name: 'Mixed Fruits', desc: 'Refreshing mixed fruits shaved ice.', price: 7.00, category: 'Icy Bowls', img: '/assets/matcha.png' },
-  { id: 17, name: 'White Lady', desc: 'Signature milky shaved ice dessert.', price: 7.00, category: 'Icy Bowls', img: '/assets/latte.png' },
-  { id: 18, name: 'Milo/Oreo', desc: 'Milo and Oreo shaved ice.', price: 8.00, category: 'Icy Bowls', img: '/assets/latte.png' },
-  { id: 19, name: 'Mango', desc: 'Fresh mango shaved ice.', price: 10.00, category: 'Icy Bowls', img: '/assets/matcha.png' },
-  { id: 20, name: 'Subak Hwachae', desc: 'Shareable (3-4 pax) Korean watermelon punch.', price: 30.00, category: 'Icy Bowls', img: '/assets/matcha.png' },
+  { id: 12, name: 'ABC', desc: 'Classic shaved ice dessert.', price: 7.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 13, name: 'Cendol', desc: 'Sweet pandan jelly in coconut milk.', price: 7.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 14, name: 'Jagung Ice', desc: 'Sweet corn shaved ice.', price: 7.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 15, name: 'Red Bean Ice', desc: 'Red bean shaved ice.', price: 7.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 16, name: 'Mixed Fruits', desc: 'Refreshing mixed fruits shaved ice.', price: 7.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 17, name: 'White Lady', desc: 'Signature milky shaved ice dessert.', price: 7.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 18, name: 'Milo/Oreo', desc: 'Milo and Oreo shaved ice.', price: 8.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 19, name: 'Mango', desc: 'Fresh mango shaved ice.', price: 10.00, category: 'Icy Bowls', img: '/assets/Icy_Boals.jpeg' },
+  { id: 20, name: 'Subak Hwachae', desc: 'Shareable (3-4 pax) Korean watermelon punch.', price: 30.00, category: 'Icy Bowls', img: '/assets/Subak_Hwachae.jpeg' },
 
   // Drinks
   { id: 21, name: 'Kopi', desc: 'Local coffee.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/espresso.png' },
@@ -44,7 +44,7 @@ const normalItems = [
   { id: 30, name: 'Ribena Sprite', desc: 'Refreshing mix.', price: 6.00, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 6.0, img: '/assets/matcha.png' },
   { id: 31, name: 'Bandung', desc: 'Rose syrup with milk.', price: 5.50, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 5.5, img: '/assets/matcha.png' },
   { id: 32, name: 'Canned Drinks', desc: 'Various canned drinks.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 3.0, img: '/assets/espresso.png' },
-  { id: 33, name: 'Floats', desc: 'Canned drink + ice cream.', price: 6.50, category: 'Drinks', isFloat: true, img: '/assets/latte.png' }
+  { id: 33, name: 'Floats', desc: 'Canned drink + ice cream.', price: 6.50, category: 'Drinks', isFloat: true, img: '/assets/Floats.jpeg' }
 ];
 
 const standardToppingsList = ['Sausage', 'Fish Tofu', 'Enoki', 'Crab stick', 'Fishball'];
