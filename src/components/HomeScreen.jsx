@@ -23,7 +23,9 @@ const HomeScreen = ({ onNavigate, bookedGames = [], onAddToCart, loyaltyPoints =
         <div className="hero-content">
           <header className="hero-header">
             <div className="header-greeting">
-              <h1 className="font-playfair text-light">Good Evening, Sarah.</h1>
+              <h1 className="font-playfair text-light">
+                {userProfile?.isGuest ? `Welcome, ${userProfile.name}` : `Good Evening, ${userProfile?.name?.split(' ')[0] || 'Sarah'}.`}
+              </h1>
             </div>
             <button className="notification-btn hero-nav-btn" onClick={() => setShowNotifications(!showNotifications)}>
               <Bell size={22} color="white" />

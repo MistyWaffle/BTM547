@@ -5,12 +5,15 @@ import HomeScreen from './components/HomeScreen';
 import MenuScreen from './components/MenuScreen';
 import CheckoutScreen from './components/CheckoutScreen';
 import LoginScreen from './components/LoginScreen';
+import OnboardingScreen from './components/OnboardingScreen';
 import GamesScreen from './components/GamesScreen';
 import ProfileScreen from './components/ProfileScreen';
 import ChatBubble from './components/ChatBubble';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isOnboarding, setIsOnboarding] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
   const [activeTab, setActiveTab] = useState('home');
   const [cart, setCart] = useState([]);
   const [bookedGames, setBookedGames] = useState([]);
@@ -72,10 +75,43 @@ function App() {
     setLoyaltyPoints(prev => prev + pointsEarned);
   };
 
-  if (!isLoggedIn) {
+  const handleAuth = (payload) => {
+    if (payload.isGuest) {
+      setIsOnboarding(true);
+    } else {
+      setUserProfile(payload);
+      setLoyaltyPoints(140);
+      setPurchaseHistory([
+        { id: 'ORD-001', date: '2026-06-05', total: '12.50' }
+      ]);
+      setIsLoggedIn(true);
+    }
+  };
+
+  const handleOnboardingComplete = (name) => {
+    setUserProfile({
+      name: name,
+      email: 'Guest Account',
+      isGuest: true
+    });
+    setLoyaltyPoints(0);
+    setPurchaseHistory([]);
+    setIsOnboarding(false);
+    setIsLoggedIn(true);
+  };
+
+  if (!isLoggedIn && !isOnboarding) {
     return (
       <div className="mobile-container">
-        <LoginScreen onLogin={() => setIsLoggedIn(true)} />
+        <LoginScreen onLogin={handleAuth} />
+      </div>
+    );
+  }
+
+  if (isOnboarding) {
+    return (
+      <div className="mobile-container">
+        <OnboardingScreen onComplete={handleOnboardingComplete} />
       </div>
     );
   }
@@ -84,6 +120,7 @@ function App() {
     switch (activeTab) {
       case 'home':
         return <HomeScreen 
+          userProfile={userProfile}
           onNavigate={setActiveTab} 
           bookedGames={bookedGames} 
           onAddToCart={handleAddToCart} 
@@ -110,8 +147,9 @@ function App() {
       case 'profile':
         return (
           <ProfileScreen 
+            userProfile={userProfile}
             purchaseHistory={purchaseHistory}
-            onLogout={() => setIsLoggedIn(false)} 
+            onLogout={() => { setIsLoggedIn(false); setUserProfile(null); }} 
             isDarkMode={isDarkMode}
             setIsDarkMode={setIsDarkMode}
             savedAddress={savedAddress}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Settings, ChevronRight, MapPin, CreditCard, LogOut, Play, Pause, Edit2, Check, Clock, ChevronDown, X } from 'lucide-react';
 import './ProfileScreen.css';
 
-const ProfileScreen = ({ onLogout, purchaseHistory = [], isDarkMode, setIsDarkMode, savedAddress, setSavedAddress }) => {
+const ProfileScreen = ({ userProfile, onLogout, purchaseHistory = [], isDarkMode, setIsDarkMode, savedAddress, setSavedAddress }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedReceipt, setSelectedReceipt] = useState(null);
@@ -11,8 +11,8 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [], isDarkMode, setIsDarkMo
   const [tempAddress, setTempAddress] = useState(savedAddress);
   
   const [profile, setProfile] = useState({
-    name: 'Sarah Jenkins',
-    email: 'sarah.j@example.com',
+    name: userProfile?.name || 'Guest',
+    email: userProfile?.email || 'guest@hideout.com',
     avatar: '/assets/avatar.png'
   });
 
