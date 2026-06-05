@@ -80,11 +80,15 @@ function App() {
       setIsOnboarding(true);
     } else {
       await new Promise(resolve => setTimeout(resolve, 300)); // Simulate async resolution
-      setUserProfile(payload);
-      setLoyaltyPoints(140);
-      setPurchaseHistory([
-        { id: 'ORD-001', date: '2026-06-05', total: '12.50' }
-      ]);
+      setUserProfile({
+        name: payload.username || payload.name,
+        email: payload.email,
+        isGuest: false,
+        orders_count: payload.orders_count || 0,
+        bookings_count: payload.bookings_count || 0
+      });
+      setLoyaltyPoints(payload.points || 0);
+      setPurchaseHistory(payload.recent_orders || []);
       setIsLoggedIn(true);
     }
   };
