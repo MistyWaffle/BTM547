@@ -9,6 +9,25 @@ const ChatBubble = () => {
     { sender: 'bot', text: "Welcome back! How can I help you today?" }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
+
+  React.useEffect(() => {
+    if (!window.visualViewport) return;
+
+    const handleResize = () => {
+      // Calculate how much the visual viewport has shrunk relative to the window inner height
+      // This offset represents the height of the software keyboard on mobile devices
+      const offset = window.innerHeight - window.visualViewport.height;
+      setKeyboardOffset(offset > 0 ? offset : 0);
+    };
+
+    window.visualViewport.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.visualViewport.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const quickReplies = [
     "Today's Special",
@@ -55,7 +74,13 @@ const ChatBubble = () => {
       </button>
 
       {/* The chat interface */}
-      <div className={`chat-interface glass-panel ${isOpen ? 'active' : ''}`}>
+      <div 
+        className={`chat-interface glass-panel ${isOpen ? 'active' : ''}`}
+        style={{
+          bottom: `calc(env(safe-area-inset-bottom, 20px) + ${keyboardOffset}px)`,
+          height: keyboardOffset > 0 ? `calc(100dvh - ${keyboardOffset}px - 40px)` : undefined
+        }}
+      >
         <div className="chat-header">
           <div className="chat-title">
             <div className="bot-avatar">
