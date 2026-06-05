@@ -90,7 +90,7 @@ button {
 
 /* Base App Container - Mobile First Centered */
 #root {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   background-color: #E8E4DB; /* Slightly darker to make the mobile container pop on desktop */
@@ -100,7 +100,7 @@ button {
   width: 100%;
   max-width: 1200px; /* Expanded for responsiveness */
   margin: 0 auto;
-  height: 100vh; /* Lock height to viewport */
+  height: 100dvh; /* Lock height to dynamic viewport */
   background-color: var(--color-background);
   position: relative;
   overflow: hidden; /* Prevent body scroll, let content-area scroll */
