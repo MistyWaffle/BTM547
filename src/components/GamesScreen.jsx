@@ -3,14 +3,14 @@ import { Clock, Calendar, CheckCircle2 } from 'lucide-react';
 import './GamesScreen.css';
 
 const games = [
-  { id: 1, name: 'Chess Board', desc: 'Classic wooden set. Great for a slow pour-over session.', img: 'https://images.unsplash.com/photo-1528819622765-d6bcf132f793?q=80&w=400&auto=format&fit=crop' },
-  { id: 2, name: 'Billiards / Snooker', desc: 'Premium slate table located in the back lounge.', img: 'https://images.unsplash.com/photo-1598284693359-994c9f136fc1?q=80&w=400&auto=format&fit=crop' },
-  { id: 3, name: 'Playing Cards', desc: 'Premium artisan decks available at the counter.', img: 'https://images.unsplash.com/photo-1501003878151-d3cb87799705?q=80&w=400&auto=format&fit=crop' },
-  { id: 4, name: 'Darts', desc: 'Professional bristle board in the standing area.', img: 'https://images.unsplash.com/photo-1629737159781-b5cbab4e6805?q=80&w=400&auto=format&fit=crop' },
-  { id: 5, name: 'Monopoly', desc: 'Ruin friendships over imaginary real estate. Perfect for groups.', img: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffaed?q=80&w=400&auto=format&fit=crop' },
-  { id: 6, name: 'Snakes & Ladders', desc: 'A classic game of luck and sudden downfalls.', img: 'https://images.unsplash.com/photo-1598654215286-9ec6101962d2?q=80&w=400&auto=format&fit=crop' },
-  { id: 7, name: 'Scrabble', desc: 'Show off your vocabulary. Dictionaries not provided.', img: 'https://images.unsplash.com/photo-1593814681464-eef5af2b0628?q=80&w=400&auto=format&fit=crop' },
-  { id: 8, name: 'Jenga', desc: 'Steady hands required. Play at your own risk!', img: 'https://images.unsplash.com/photo-1610996841108-a5f11ce72e9d?q=80&w=400&auto=format&fit=crop' }
+  { id: 1, name: 'Chess Board', desc: 'Classic wooden set. Great for a slow pour-over session.', img: '/assets/vector_chess.png' },
+  { id: 2, name: 'Billiards / Snooker', desc: 'Premium slate table located in the back lounge.', img: '/assets/vector_billiards.png' },
+  { id: 3, name: 'Playing Cards', desc: 'Premium artisan decks available at the counter.', img: '/assets/vector_cards.png' },
+  { id: 4, name: 'Darts', desc: 'Professional bristle board in the standing area.', img: '/assets/vector_darts.png' },
+  { id: 5, name: 'Monopoly', desc: 'Ruin friendships over imaginary real estate. Perfect for groups.', img: '/assets/vector_monopoly.png' },
+  { id: 6, name: 'Snakes & Ladders', desc: 'A classic game of luck and sudden downfalls.', img: '/assets/vector_snakes.png' },
+  { id: 7, name: 'Scrabble', desc: 'Show off your vocabulary. Dictionaries not provided.', img: '/assets/vector_scrabble.png' },
+  { id: 8, name: 'Jenga', desc: 'Steady hands required. Play at your own risk!', img: '/assets/vector_jenga.png' }
 ];
 
 const timeSlots = ['14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'];
