@@ -5,6 +5,7 @@ import './HomeScreen.css';
 const HomeScreen = ({ onNavigate, bookedGames = [], onAddToCart, loyaltyPoints = 140 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [studentVerified, setStudentVerified] = useState(false);
 
   const MAX_POINTS = 150;
   const currentProgress = loyaltyPoints % MAX_POINTS;
@@ -152,7 +153,17 @@ const HomeScreen = ({ onNavigate, bookedGames = [], onAddToCart, loyaltyPoints =
               <div className="promo-content">
                 <span className="promo-badge">Student</span>
                 <h3 className="font-playfair">15% Off All Brews</h3>
-                <p className="text-muted text-sm">Show your student ID at the counter.</p>
+                {!studentVerified ? (
+                  <button 
+                    className="btn-verify mt-2" 
+                    onClick={() => setStudentVerified(true)}
+                    style={{ background: 'var(--color-primary)', color: 'white', padding: '6px 14px', borderRadius: '20px', fontSize: '0.8rem', border: 'none', fontWeight: '500', cursor: 'pointer', marginTop: '8px' }}
+                  >
+                    Verify via UniDays
+                  </button>
+                ) : (
+                  <p className="text-success text-sm font-semibold" style={{ color: '#2d6a4f', marginTop: '8px' }}>✓ Student ID Verified</p>
+                )}
               </div>
             </div>
           </div>

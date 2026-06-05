@@ -85,7 +85,7 @@ const ProfileScreen = ({ onLogout, purchaseHistory = [], isDarkMode, setIsDarkMo
           <span className="stat-label text-muted">Points</span>
         </div>
         <div className="stat-box glass-panel">
-          <span className="stat-num text-primary font-playfair">12</span>
+          <span className="stat-num text-primary font-playfair">{purchaseHistory.length}</span>
           <span className="stat-label text-muted">Orders</span>
         </div>
         <div className="stat-box glass-panel">
