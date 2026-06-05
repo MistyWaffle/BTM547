@@ -40,27 +40,28 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 2px;
   color: var(--color-text-muted);
   transition: all 0.3s ease;
   flex: 1;
   width: 20%;
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-item span {
   font-size: 0.7rem;
   font-weight: 500;
   opacity: 0;
-  transform: translateY(5px);
+  max-height: 0;
+  overflow: hidden;
   transition: all 0.3s ease;
-  position: absolute;
-  bottom: 8px;
 }
 
 .nav-item > svg,
 .nav-item > .cart-icon-wrapper {
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .nav-item.active {
@@ -69,7 +70,7 @@
 
 .nav-item.active > svg,
 .nav-item.active > .cart-icon-wrapper {
-  transform: translateY(-10px);
+  /* Removed extreme translateY to keep icon anchored */
 }
 
 .nav-item.active svg {
@@ -78,7 +79,7 @@
 
 .nav-item.active span {
   opacity: 1;
-  transform: translateY(0);
+  max-height: 20px;
 }
 
 .cart-icon-wrapper {
@@ -126,21 +127,22 @@
 /* Nav Island Upgrades */
 .nav-highlight {
   position: absolute;
-  bottom: 12px;
-  width: 45px;
-  height: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
   background: rgba(197, 160, 89, 0.15); /* Subtle brass anchor */
-  border-radius: 50%;
+  border-radius: var(--radius-md);
   transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
   z-index: 0;
 }
 
-/* Responsive percentage offsets for 5 tabs */
-.nav-highlight.active-home    { left: calc(10% - 22.5px); }
-.nav-highlight.active-menu    { left: calc(30% - 22.5px); }
-.nav-highlight.active-games   { left: calc(50% - 22.5px); }
-.nav-highlight.active-cart    { left: calc(70% - 22.5px); }
-.nav-highlight.active-profile { left: calc(90% - 22.5px); }
+/* Responsive percentage offsets for 5 tabs (width is 56px, so offset is half = 28px) */
+.nav-highlight.active-home    { left: calc(10% - 28px); }
+.nav-highlight.active-menu    { left: calc(30% - 28px); }
+.nav-highlight.active-games   { left: calc(50% - 28px); }
+.nav-highlight.active-cart    { left: calc(70% - 28px); }
+.nav-highlight.active-profile { left: calc(90% - 28px); }
 
 .nav-item {
   position: relative;
@@ -202,14 +204,15 @@
 
   /* Reset the horizontal highlight offsets and apply vertical */
   .nav-highlight {
-    left: 17.5px !important; /* Centered horizontally in the 80px wide sidebar */
+    left: 12px;
+    top: 10px;
     transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
   }
 
-  .nav-highlight.active-home    { top: calc(10% - 22.5px); bottom: auto; }
-  .nav-highlight.active-menu    { top: calc(30% - 22.5px); bottom: auto; }
-  .nav-highlight.active-games   { top: calc(50% - 22.5px); bottom: auto; }
-  .nav-highlight.active-cart    { top: calc(70% - 22.5px); bottom: auto; }
-  .nav-highlight.active-profile { top: calc(90% - 22.5px); bottom: auto; }
+  /* Responsive offsets for sidebar */
+  .nav-highlight.active-home    { top: calc(10% - 28px); bottom: auto; }
+  .nav-highlight.active-menu    { top: calc(30% - 28px); bottom: auto; }
+  .nav-highlight.active-games   { top: calc(50% - 28px); bottom: auto; }
+  .nav-highlight.active-cart    { top: calc(70% - 28px); bottom: auto; }
+  .nav-highlight.active-profile { top: calc(90% - 28px); bottom: auto; }
 }
-
