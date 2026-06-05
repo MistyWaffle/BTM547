@@ -37,10 +37,10 @@
 }
 
 body.dark-mode {
-  --color-primary: #F7F4EF;
+  --color-primary: #EAE6DB; /* Softened cream to reduce harsh contrast */
   --color-secondary: #C5A059;
   --color-background: #0a1511; /* Dark Forest Green */
-  --color-text-dark: #F7F4EF;
+  --color-text-dark: #EAE6DB; /* Softened from pure white */
   --color-text-light: #1A362B;
   --color-text-muted: #A0A0A0;
 

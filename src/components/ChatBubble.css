@@ -1,6 +1,6 @@
 .chat-bubble-container {
   position: absolute;
-  bottom: 100px; /* Above bottom nav */
+  bottom: calc(100px + env(safe-area-inset-bottom, 20px)); /* Safe clearance above bottom nav */
   right: 20px;
   z-index: 150;
   display: flex;
@@ -75,7 +75,7 @@
 .bot-avatar {
   width: 28px;
   height: 28px;
-  background: white;
+  background: var(--color-surface);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -102,7 +102,7 @@
 
 .bot-message {
   align-self: flex-start;
-  background: white;
+  background: var(--color-surface);
   padding: 12px 16px;
   border-radius: var(--radius-md);
   border-bottom-left-radius: 4px;
@@ -120,7 +120,7 @@
 
 .chat-input-area {
   padding: 15px;
-  background: white;
+  background: var(--color-surface);
   border-top: 1px solid rgba(0,0,0,0.05);
   display: flex;
   gap: 10px;
