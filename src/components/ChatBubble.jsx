@@ -108,6 +108,7 @@ const ChatBubble = () => {
             <Send size={18} />
           </button>
         </div>
+        </div>
       </div>
     </>
   );
