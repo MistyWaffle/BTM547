@@ -1,5 +1,6 @@
 .content-area {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
   overflow-y: auto;
   padding-bottom: max(90px, calc(90px + env(safe-area-inset-bottom))); /* Space for bottom nav */
 }
