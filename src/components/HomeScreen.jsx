@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Bell, ChevronRight, Star, Play, Pause } from 'lucide-react';
 import './HomeScreen.css';
 
-const HomeScreen = ({ onNavigate, bookedGames = [], onAddToCart, loyaltyPoints = 140 }) => {
+const HomeScreen = ({ userProfile, onNavigate, bookedGames = [], onAddToCart, loyaltyPoints = 140 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [studentVerified, setStudentVerified] = useState(false);
