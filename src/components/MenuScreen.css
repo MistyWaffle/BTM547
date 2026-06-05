@@ -93,6 +93,13 @@
   -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
 }
 
+/* Bulletproof right clearance for horizontal scrolling so items don't hide under the gradient mask */
+.category-scroll::after {
+  content: '';
+  display: block;
+  flex: 0 0 40px;
+}
+
 .category-pill {
   padding: 8px 16px;
   border-radius: var(--radius-pill);
