@@ -75,10 +75,11 @@ function App() {
     setLoyaltyPoints(prev => prev + pointsEarned);
   };
 
-  const handleAuth = (payload) => {
+  const handleAuth = async (payload) => {
     if (payload.isGuest) {
       setIsOnboarding(true);
     } else {
+      await new Promise(resolve => setTimeout(resolve, 300)); // Simulate async resolution
       setUserProfile(payload);
       setLoyaltyPoints(140);
       setPurchaseHistory([
@@ -88,7 +89,8 @@ function App() {
     }
   };
 
-  const handleOnboardingComplete = (name) => {
+  const handleOnboardingComplete = async (name) => {
+    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate async backend commit
     setUserProfile({
       name: name,
       email: 'Guest Account',
@@ -112,6 +114,16 @@ function App() {
     return (
       <div className="mobile-container">
         <OnboardingScreen onComplete={handleOnboardingComplete} />
+      </div>
+    );
+  }
+
+  // Null-check guard to prevent WSoD if state is resolving
+  if (isLoggedIn && !userProfile) {
+    return (
+      <div className="mobile-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh' }}>
+        <div style={{ width: '40px', height: '40px', border: '3px solid rgba(197, 160, 89, 0.3)', borderTopColor: 'var(--color-primary)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
       </div>
     );
   }

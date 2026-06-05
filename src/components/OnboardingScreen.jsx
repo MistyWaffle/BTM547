@@ -3,11 +3,13 @@ import './OnboardingScreen.css';
 
 const OnboardingScreen = ({ onComplete }) => {
   const [name, setName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (name.trim()) {
-      onComplete(name.trim());
+    if (name.trim() && !isSubmitting) {
+      setIsSubmitting(true);
+      await onComplete(name.trim());
     }
   };
 
@@ -26,9 +28,10 @@ const OnboardingScreen = ({ onComplete }) => {
             required 
             maxLength={20}
             className="name-input"
+            disabled={isSubmitting}
           />
-          <button type="submit" className="btn-primary start-btn" disabled={!name.trim()}>
-            Start Your Ritual
+          <button type="submit" className="btn-primary start-btn" disabled={!name.trim() || isSubmitting}>
+            {isSubmitting ? 'Starting...' : 'Start Your Ritual'}
           </button>
         </form>
       </div>
