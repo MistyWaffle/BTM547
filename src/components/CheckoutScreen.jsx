@@ -164,6 +164,11 @@ const CheckoutScreen = ({ cart, onClearCart, onNavigate, onCheckout, onUpdateCar
           {cart.map((item, index) => (
             <div key={`${item.id}-${index}`} className="cart-item">
               <div className="cart-item-info">
+                {item.img && (
+                  <div className="cart-item-thumb">
+                    <img src={item.img} alt={item.name} />
+                  </div>
+                )}
                 <div className="cart-item-text">
                   <h4>{item.name}</h4>
                   <p className="text-xs text-muted">{item.details}</p>
