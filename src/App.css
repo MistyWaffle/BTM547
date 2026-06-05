@@ -2,19 +2,8 @@
   flex: 1 1 0;
   min-height: 0;
   overflow-y: auto;
-  /* padding-bottom removed; using ::after for scroll safety */
-}
-
-/* 
- * Bulletproof Scroll Padding: 
- * Ensures the last item in a scrolling list completely clears the bottom navigation 
- * bar, preventing it from being obscured.
- */
-.content-area::after {
-  content: '';
-  display: block;
-  height: max(120px, calc(100px + env(safe-area-inset-bottom, 20px)));
-  width: 100%;
+  /* Global trailing content padding to ensure list items clear the absolute bottom nav bar completely */
+  padding-bottom: calc(120px + env(safe-area-inset-bottom, 20px));
 }
 
 /* Floating Bottom Navigation */
