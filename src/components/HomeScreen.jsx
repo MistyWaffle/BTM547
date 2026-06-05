@@ -108,32 +108,32 @@ const HomeScreen = ({ onNavigate, bookedGames = [], onAddToCart, loyaltyPoints =
           <div className="reorder-list">
             <div className="reorder-item glass-panel">
               <div className="reorder-icon">
-                <img src="/assets/latte.png" alt="Cortado" />
+                <img src="/assets/drinks.jpeg" alt="Kopi" />
               </div>
               <div className="reorder-details">
-                <h4>Oat Cortado</h4>
-                <p className="text-muted text-sm">Double shot, warm</p>
+                <h4>Kopi</h4>
+                <p className="text-muted text-sm">Cold, Standard Sweetness</p>
               </div>
               <button 
                 className="btn-add-small"
                 onClick={() => {
-                  if(onAddToCart) onAddToCart({ id: 2, name: 'Oat Cortado', price: 14.00, category: 'coffee', img: '/assets/latte.png', qty: 1 });
+                  if(onAddToCart) onAddToCart({ id: '21-' + Date.now(), name: 'Kopi', details: 'Cold', price: 3.50, qty: 1, category: 'Drinks', img: '/assets/drinks.jpeg' });
                 }}
               >+</button>
             </div>
             
             <div className="reorder-item glass-panel">
               <div className="reorder-icon">
-                <img src="/assets/espresso.png" alt="Pour Over" />
+                <img src="/assets/Hideout_Toast.jpeg" alt="Hideout Toast" />
               </div>
               <div className="reorder-details">
-                <h4>Pour Over</h4>
-                <p className="text-muted text-sm">Ethiopia Yirgacheffe</p>
+                <h4>Hideout Toast</h4>
+                <p className="text-muted text-sm">Standard</p>
               </div>
               <button 
                 className="btn-add-small"
                 onClick={() => {
-                  if(onAddToCart) onAddToCart({ id: 4, name: 'Pour Over', price: 16.00, category: 'coffee', img: '/assets/espresso.png', qty: 1 });
+                  if(onAddToCart) onAddToCart({ id: '2-' + Date.now(), name: 'Hideout Toast', details: 'Standard', price: 14.50, qty: 1, category: 'Bites', img: '/assets/Hideout_Toast.jpeg' });
                 }}
               >+</button>
             </div>

@@ -32,18 +32,18 @@ const normalItems = [
   { id: 20, name: 'Subak Hwachae', desc: 'Shareable (3-4 pax) Korean watermelon punch.', price: 30.00, category: 'Icy Bowls', img: '/assets/Subak_Hwachae.jpeg' },
 
   // Drinks
-  { id: 21, name: 'Kopi', desc: 'Local coffee.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/espresso.png' },
-  { id: 22, name: 'Kopi O', desc: 'Local black coffee with sugar.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/espresso.png' },
-  { id: 23, name: 'Kopi C', desc: 'Local coffee with evaporated milk.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/espresso.png' },
-  { id: 24, name: 'Teh', desc: 'Local milk tea.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/latte.png' },
-  { id: 25, name: 'Teh O', desc: 'Local tea with sugar.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/latte.png' },
-  { id: 26, name: 'Teh C', desc: 'Local tea with evaporated milk.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/latte.png' },
-  { id: 27, name: 'Milo', desc: 'Chocolate malt drink.', price: 4.00, category: 'Drinks', hasVariants: true, hotPrice: 4.0, coldPrice: 4.5, img: '/assets/latte.png' },
-  { id: 28, name: 'Milo O', desc: 'Chocolate malt drink without milk.', price: 4.00, category: 'Drinks', hasVariants: true, hotPrice: 4.0, coldPrice: 4.5, img: '/assets/latte.png' },
-  { id: 29, name: 'Milo C', desc: 'Chocolate malt drink with evaporated milk.', price: 4.00, category: 'Drinks', hasVariants: true, hotPrice: 4.0, coldPrice: 4.5, img: '/assets/latte.png' },
-  { id: 30, name: 'Ribena Sprite', desc: 'Refreshing mix.', price: 6.00, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 6.0, img: '/assets/matcha.png' },
-  { id: 31, name: 'Bandung', desc: 'Rose syrup with milk.', price: 5.50, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 5.5, img: '/assets/matcha.png' },
-  { id: 32, name: 'Canned Drinks', desc: 'Various canned drinks.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 3.0, img: '/assets/espresso.png' },
+  { id: 21, name: 'Kopi', desc: 'Local coffee.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/drinks.jpeg' },
+  { id: 22, name: 'Kopi O', desc: 'Local black coffee with sugar.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/drinks.jpeg' },
+  { id: 23, name: 'Kopi C', desc: 'Local coffee with evaporated milk.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/drinks.jpeg' },
+  { id: 24, name: 'Teh', desc: 'Local milk tea.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/drinks.jpeg' },
+  { id: 25, name: 'Teh O', desc: 'Local tea with sugar.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/drinks.jpeg' },
+  { id: 26, name: 'Teh C', desc: 'Local tea with evaporated milk.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: 3.0, coldPrice: 3.5, img: '/assets/drinks.jpeg' },
+  { id: 27, name: 'Milo', desc: 'Chocolate malt drink.', price: 4.00, category: 'Drinks', hasVariants: true, hotPrice: 4.0, coldPrice: 4.5, img: '/assets/drinks.jpeg' },
+  { id: 28, name: 'Milo O', desc: 'Chocolate malt drink without milk.', price: 4.00, category: 'Drinks', hasVariants: true, hotPrice: 4.0, coldPrice: 4.5, img: '/assets/drinks.jpeg' },
+  { id: 29, name: 'Milo C', desc: 'Chocolate malt drink with evaporated milk.', price: 4.00, category: 'Drinks', hasVariants: true, hotPrice: 4.0, coldPrice: 4.5, img: '/assets/drinks.jpeg' },
+  { id: 30, name: 'Ribena Sprite', desc: 'Refreshing mix.', price: 6.00, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 6.0, img: '/assets/drinks.jpeg' },
+  { id: 31, name: 'Bandung', desc: 'Rose syrup with milk.', price: 5.50, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 5.5, img: '/assets/drinks.jpeg' },
+  { id: 32, name: 'Canned Drinks', desc: 'Various canned drinks.', price: 3.00, category: 'Drinks', hasVariants: true, hotPrice: null, coldPrice: 3.0, img: '/assets/drinks.jpeg' },
   { id: 33, name: 'Floats', desc: 'Canned drink + ice cream.', price: 6.50, category: 'Drinks', isFloat: true, img: '/assets/Floats.jpeg' }
 ];
 
