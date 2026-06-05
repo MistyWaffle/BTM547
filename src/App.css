@@ -2,15 +2,29 @@
   flex: 1 1 0;
   min-height: 0;
   overflow-y: auto;
-  padding-bottom: max(90px, calc(90px + env(safe-area-inset-bottom))); /* Space for bottom nav */
+  /* padding-bottom removed; using ::after for scroll safety */
+}
+
+/* 
+ * Bulletproof Scroll Padding: 
+ * Ensures the last item in a scrolling list completely clears the bottom navigation 
+ * bar, preventing it from being obscured.
+ */
+.content-area::after {
+  content: '';
+  display: block;
+  height: max(120px, calc(100px + env(safe-area-inset-bottom, 20px)));
+  width: 100%;
 }
 
 /* Floating Bottom Navigation */
 .bottom-nav {
-  position: absolute;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  left: 20px;
-  right: 20px;
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 560px;
   height: 70px;
   border-radius: var(--radius-pill);
   display: flex;
@@ -19,8 +33,6 @@
   padding: 0;
   box-shadow: var(--shadow-lg);
   z-index: 100;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .nav-item {
