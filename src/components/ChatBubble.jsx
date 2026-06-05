@@ -43,8 +43,10 @@ const ChatBubble = () => {
   };
 
   return (
-    <div className={`chat-bubble-container ${isOpen ? 'open' : ''}`}>
-      {/* The floating button */}
+    <>
+      <div className={`chat-backdrop ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(false)}></div>
+      <div className={`chat-bubble-container ${isOpen ? 'open' : ''}`}>
+        {/* The floating button */}
       <button 
         className={`chat-toggle-btn ${isOpen ? 'hidden' : ''}`}
         onClick={() => setIsOpen(true)}
@@ -107,7 +109,7 @@ const ChatBubble = () => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

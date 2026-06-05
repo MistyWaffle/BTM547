@@ -1,11 +1,34 @@
+.chat-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.chat-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .chat-bubble-container {
   position: absolute;
   bottom: calc(100px + env(safe-area-inset-bottom, 20px)); /* Safe clearance above bottom nav */
   right: 20px;
-  z-index: 150;
+  z-index: 2000;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.chat-bubble-container.open {
+  /* When open, we detach the container bounds to allow the fixed modal to position relative to viewport */
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* Let clicks pass through to backdrop unless on modal */
 }
 
 .chat-toggle-btn {
@@ -31,29 +54,36 @@
   pointer-events: none;
 }
 
+/* We ensure the FAB responds to pointer events when the container is fixed */
+.chat-bubble-container:not(.open) .chat-toggle-btn {
+  pointer-events: auto;
+}
+
 .chat-interface {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 320px;
-  height: 400px;
+  position: fixed;
+  bottom: env(safe-area-inset-bottom, 20px);
+  right: 50%;
+  transform: translateX(50%) scale(0.9) translateY(20px);
+  width: calc(100% - 40px);
+  max-width: 440px;
+  height: 65dvh;
+  max-height: 600px;
   background: var(--glass-bg);
   border-radius: var(--radius-lg);
-  border-bottom-right-radius: var(--radius-sm);
   display: flex;
   flex-direction: column;
   opacity: 0;
-  transform: scale(0.9) translateY(20px);
-  transform-origin: bottom right;
+  transform-origin: bottom center;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   overflow: hidden;
+  z-index: 2001;
 }
 
 .chat-interface.active {
   opacity: 1;
-  transform: scale(1) translateY(0);
+  transform: translateX(50%) scale(1) translateY(0);
   pointer-events: auto;
 }
 
@@ -120,6 +150,7 @@
 
 .chat-input-area {
   padding: 15px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
   background: var(--color-surface);
   border-top: 1px solid rgba(0,0,0,0.05);
   display: flex;
