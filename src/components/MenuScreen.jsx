@@ -1,4 +1,5 @@
 import React, { useState, Component } from 'react';
+import { createPortal } from 'react-dom';
 import { Search, Plus, Minus, X, Heart } from 'lucide-react';
 import './MenuScreen.css';
 
@@ -550,26 +551,32 @@ const MenuScreen = ({ onAddToCart }) => {
         </div>
       </div>
 
-      <div className={`customization-drawer glass-panel ${selectedItem ? 'open' : ''}`}>
-        {selectedItem && (
-          <ModalErrorBoundary onReset={closeDrawer}>
-            <div className="drawer-header">
-              <h2 className="font-playfair">{selectedItem.name || 'Item Details'}</h2>
-              <button className="close-btn" onClick={closeDrawer}>
-                <X size={24} />
-              </button>
-            </div>
-            
-            {renderDrawerContent()}
+      {createPortal(
+        <>
+          <div className={`modal-backdrop ${selectedItem ? 'open' : ''}`} onClick={closeDrawer}></div>
+          <div className={`customization-drawer glass-panel ${selectedItem ? 'open' : ''}`}>
+            {selectedItem && (
+              <ModalErrorBoundary onReset={closeDrawer}>
+                <div className="drawer-header">
+                  <h2 className="font-playfair">{selectedItem.name || 'Item Details'}</h2>
+                  <button className="close-btn" onClick={closeDrawer}>
+                    <X size={24} />
+                  </button>
+                </div>
+                
+                {renderDrawerContent()}
 
-            <div className="drawer-footer">
-              <button className="btn-primary full-width" onClick={handleAddToCart}>
-                Add to Cart - RM {getSafePrice().toFixed(2)}
-              </button>
-            </div>
-          </ModalErrorBoundary>
-        )}
-      </div>
+                <div className="drawer-footer">
+                  <button className="btn-primary full-width" onClick={handleAddToCart}>
+                    Add to Cart - RM {getSafePrice().toFixed(2)}
+                  </button>
+                </div>
+              </ModalErrorBoundary>
+            )}
+          </div>
+        </>,
+        document.body
+      )}
     </div>
   );
 };

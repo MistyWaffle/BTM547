@@ -212,21 +212,39 @@
   font-weight: 600;
 }
 
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Customization Drawer */
 .customization-drawer {
-  position: absolute;
-  bottom: 110px; /* Above bottom nav */
-  left: 20px;
-  right: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   width: auto;
   height: auto;
-  max-height: 75%;
+  max-height: 85dvh;
   background-color: var(--color-background); /* Solid base */
-  border-radius: var(--radius-lg);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-  transform: translateY(150%);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(100%);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease, opacity 0.3s, visibility 0.4s;
-  z-index: 300;
+  z-index: 2001;
   display: flex;
   flex-direction: column;
   opacity: 0;

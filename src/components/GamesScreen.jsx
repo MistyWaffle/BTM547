@@ -1,4 +1,5 @@
 import React, { useState, Component } from 'react';
+import { createPortal } from 'react-dom';
 import { Clock, Calendar, CheckCircle2 } from 'lucide-react';
 import './GamesScreen.css';
 
@@ -90,66 +91,74 @@ const GamesScreen = ({ onBookGame, onDrawerStateChange }) => {
         </div>
       </div>
 
-      {/* Booking Drawer */}
-      <div className={`booking-drawer glass-panel ${selectedGame ? 'open' : ''}`}>
-        {selectedGame && !bookingSuccess && (
-          <ModalErrorBoundary onReset={() => {
+      {createPortal(
+        <>
+          <div className={`modal-backdrop ${selectedGame ? 'open' : ''}`} onClick={() => {
             setSelectedGame(null);
             if (onDrawerStateChange) onDrawerStateChange(false);
-          }}>
-            <div className="drawer-header">
-              <h2 className="font-playfair">Reserve {selectedGame.name || 'Game'}</h2>
-              <button 
-              className="close-btn" 
-              onClick={() => {
+          }}></div>
+          <div className={`booking-drawer glass-panel ${selectedGame ? 'open' : ''}`}>
+            {selectedGame && !bookingSuccess && (
+              <ModalErrorBoundary onReset={() => {
                 setSelectedGame(null);
                 if (onDrawerStateChange) onDrawerStateChange(false);
-              }}
-            >✕</button>
-            </div>
-            
-            <div className="drawer-content">
-              <div className="booking-section">
-                <h4 className="flex-align"><Calendar size={18} className="mr-2"/> Today</h4>
-                <div className="slots-grid">
-                  {timeSlots.map(slot => (
-                    <button 
-                      key={slot}
-                      className={`slot-btn ${selectedSlot === slot ? 'active' : ''}`}
-                      onClick={() => setSelectedSlot(slot)}
-                    >
-                      {slot}
-                    </button>
-                  ))}
+              }}>
+                <div className="drawer-header">
+                  <h2 className="font-playfair">Reserve {selectedGame.name || 'Game'}</h2>
+                  <button 
+                  className="close-btn" 
+                  onClick={() => {
+                    setSelectedGame(null);
+                    if (onDrawerStateChange) onDrawerStateChange(false);
+                  }}
+                >✕</button>
                 </div>
+                
+                <div className="drawer-content">
+                  <div className="booking-section">
+                    <h4 className="flex-align"><Calendar size={18} className="mr-2"/> Today</h4>
+                    <div className="slots-grid">
+                      {timeSlots.map(slot => (
+                        <button 
+                          key={slot}
+                          className={`slot-btn ${selectedSlot === slot ? 'active' : ''}`}
+                          onClick={() => setSelectedSlot(slot)}
+                        >
+                          {slot}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="booking-summary glass-panel">
+                    <Clock size={16} className="text-muted" />
+                    <span className="text-sm ml-2 text-muted">Sessions are limited to 1 hour to accommodate all guests.</span>
+                  </div>
+                </div>
+
+                <div className="drawer-footer">
+                  <button 
+                    className="btn-primary full-width" 
+                    disabled={!selectedSlot}
+                    onClick={handleBook}
+                  >
+                    Confirm Booking
+                  </button>
+                </div>
+              </ModalErrorBoundary>
+            )}
+
+            {bookingSuccess && (
+              <div className="booking-success">
+                <CheckCircle2 size={64} className="text-primary mb-4" />
+                <h2 className="font-playfair text-primary">Slot Confirmed</h2>
+                <p className="text-muted text-center mt-2">Your table for {selectedGame?.name} is reserved for {selectedSlot}. See you soon!</p>
               </div>
-
-              <div className="booking-summary glass-panel">
-                <Clock size={16} className="text-muted" />
-                <span className="text-sm ml-2 text-muted">Sessions are limited to 1 hour to accommodate all guests.</span>
-              </div>
-            </div>
-
-            <div className="drawer-footer">
-              <button 
-                className="btn-primary full-width" 
-                disabled={!selectedSlot}
-                onClick={handleBook}
-              >
-                Confirm Booking
-              </button>
-            </div>
-          </ModalErrorBoundary>
-        )}
-
-        {bookingSuccess && (
-          <div className="booking-success">
-            <CheckCircle2 size={64} className="text-primary mb-4" />
-            <h2 className="font-playfair text-primary">Slot Confirmed</h2>
-            <p className="text-muted text-center mt-2">Your table for {selectedGame?.name} is reserved for {selectedSlot}. See you soon!</p>
+            )}
           </div>
-        )}
-      </div>
+        </>,
+        document.body
+      )}
     </div>
   );
 };
