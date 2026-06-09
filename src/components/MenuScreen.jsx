@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { Search, Plus, Minus, X, Heart } from 'lucide-react';
 import './MenuScreen.css';
 
@@ -61,6 +61,32 @@ const bitesAddonsList = [
 ];
 
 const normalCategories = ['All', 'Noodles', 'Bites', 'Platters', 'Icy Bowls', 'Drinks'];
+
+class ModalErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Modal rendering crash caught:", error, errorInfo);
+    if (this.props.onReset) {
+      // Defer state reset to avoid updating state during an existing render cycle
+      setTimeout(this.props.onReset, 0);
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null;
+    }
+    return this.props.children;
+  }
+}
 
 const MenuScreen = ({ onAddToCart }) => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -185,6 +211,16 @@ const MenuScreen = ({ onAddToCart }) => {
     } else {
       // Icy Bowls
       return selectedItem.price * itemQuantity;
+    }
+  };
+
+  const getSafePrice = () => {
+    try {
+      const price = calculatePrice();
+      return (typeof price === 'number' && !isNaN(price)) ? price : 0;
+    } catch (err) {
+      console.error("calculatePrice crashed:", err);
+      return 0;
     }
   };
 
@@ -516,9 +552,9 @@ const MenuScreen = ({ onAddToCart }) => {
 
       <div className={`customization-drawer glass-panel ${selectedItem ? 'open' : ''}`}>
         {selectedItem && (
-          <>
+          <ModalErrorBoundary onReset={closeDrawer}>
             <div className="drawer-header">
-              <h2 className="font-playfair">{selectedItem.name}</h2>
+              <h2 className="font-playfair">{selectedItem.name || 'Item Details'}</h2>
               <button className="close-btn" onClick={closeDrawer}>
                 <X size={24} />
               </button>
@@ -528,10 +564,10 @@ const MenuScreen = ({ onAddToCart }) => {
 
             <div className="drawer-footer">
               <button className="btn-primary full-width" onClick={handleAddToCart}>
-                Add to Cart - RM {calculatePrice().toFixed(2)}
+                Add to Cart - RM {getSafePrice().toFixed(2)}
               </button>
             </div>
-          </>
+          </ModalErrorBoundary>
         )}
       </div>
     </div>

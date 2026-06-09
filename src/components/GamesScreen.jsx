@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { Clock, Calendar, CheckCircle2 } from 'lucide-react';
 import './GamesScreen.css';
 
@@ -14,6 +14,31 @@ const games = [
 ];
 
 const timeSlots = ['14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'];
+
+class ModalErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Games modal crash caught:", error, errorInfo);
+    if (this.props.onReset) {
+      setTimeout(this.props.onReset, 0);
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null;
+    }
+    return this.props.children;
+  }
+}
 
 const GamesScreen = ({ onBookGame, onDrawerStateChange }) => {
   const [selectedGame, setSelectedGame] = useState(null);
@@ -68,9 +93,12 @@ const GamesScreen = ({ onBookGame, onDrawerStateChange }) => {
       {/* Booking Drawer */}
       <div className={`booking-drawer glass-panel ${selectedGame ? 'open' : ''}`}>
         {selectedGame && !bookingSuccess && (
-          <>
+          <ModalErrorBoundary onReset={() => {
+            setSelectedGame(null);
+            if (onDrawerStateChange) onDrawerStateChange(false);
+          }}>
             <div className="drawer-header">
-              <h2 className="font-playfair">Reserve {selectedGame.name}</h2>
+              <h2 className="font-playfair">Reserve {selectedGame.name || 'Game'}</h2>
               <button 
               className="close-btn" 
               onClick={() => {
@@ -111,7 +139,7 @@ const GamesScreen = ({ onBookGame, onDrawerStateChange }) => {
                 Confirm Booking
               </button>
             </div>
-          </>
+          </ModalErrorBoundary>
         )}
 
         {bookingSuccess && (
