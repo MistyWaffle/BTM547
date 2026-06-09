@@ -73,6 +73,11 @@
 
 .cart-icon-wrapper {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 }
 
 .cart-dot {
@@ -84,7 +89,7 @@
   width: 10px;
   border-radius: 50%;
   border: 2px solid var(--color-background);
-  opacity: 1 !important; /* Force visible over .nav-item span hiding */
+  z-index: 10;
 }
 
 .pulse-anim {

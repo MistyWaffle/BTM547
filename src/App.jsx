@@ -225,7 +225,7 @@ function App() {
           <div className="cart-icon-wrapper">
             <ShoppingBag size={24} />
             {totalCartQty > 0 && (
-              <span className="cart-dot pulse-anim"></span>
+              <div className="cart-dot pulse-anim"></div>
             )}
           </div>
           <span>Cart</span>
